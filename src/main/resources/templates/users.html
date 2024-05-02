@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Hello</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<
+<body>
+
+<div class="container-fluid">
+    <div><h1>manage Users</h1></div>
+    <div class="m-2">
+        <a class="h3" th:href="@{/users/new}">Add New User</a>
+    </div>
+
+    <div th:if="${message}" class="alert alert-success text-center center">
+
+        [[${message}]]
+
+    </div>
+
+
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>E-mail</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Enabled</th>
+                <th></th>
+            </tr>
+            </thead>
+            <th:block th:each="user :${listUsers}">
+                <tr>
+                    <td>[[${user.id}]]</td>
+                    <td>[[${user.email}]]</td>
+                    <td>[[${user.firstName}]]</td>
+                    <td>[[${user.lastName}]]</td>
+                    <td>[[${user.enabled}]]</td>
+                    <td>
+                        <a class="h4 mr-3" th:href="@{'users/edit/'+${user.id}}">Edit</a>
+                        <a class="h4" th:href="@{'users/delete/'+ ${user.id}}">Delete</a>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>
